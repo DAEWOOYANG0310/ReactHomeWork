@@ -25,11 +25,13 @@ const App = () => {
       id: new Date().getTime() + 1,
       title: "리액트를 공부하자",
       content: "공부중",
+      completed: false,
     },
     {
       id: new Date().getTime() + 2,
       title: "리액트를 공부하자",
       content: "공부중",
+      completed: false,
     },
   ]);
   const deleteUserhander = (id) => {
@@ -53,9 +55,20 @@ const App = () => {
       id: new Date().getTime(),
       title: title,
       content: content,
+      completed: false,
     };
     setLists([...lists, newList]);
   };
+  const toggleCompleted = (id) => {
+    const updatedLists = lists.map((list) =>
+      list.id === id ? { ...list, completed: !list.completed } : list
+    );
+    setLists(updatedLists);
+  };
+
+  const workingLists = lists.filter((list) => !list.completed);
+  const completedLists = lists.filter((list) => list.completed);
+
   return (
     <div style={bodyStyle}>
       <header>
@@ -70,24 +83,35 @@ const App = () => {
       <section>
         <h3>Working</h3>
         <main style={mainStyle}>
-          {lists.map((list) => (
+          {workingLists.map((list) => (
             <List
               key={list.id}
               list={list}
               deleteUserhander={deleteUserhander}
+              toggleCompleted={toggleCompleted}
             />
           ))}
         </main>
         <h3>Done!</h3>
+        <main style={mainStyle}>
+          {completedLists.map((list) => (
+            <List
+              key={list.id}
+              list={list}
+              deleteUserhander={deleteUserhander}
+              toggleCompleted={toggleCompleted}
+            />
+          ))}
+        </main>
       </section>
     </div>
   );
 };
-
 export default App;
 
-const List = ({ list, deleteUserhander }) => {
-  console.log(list);
+const List = ({ list, deleteUserhander, toggleCompleted }) => {
+  const { title, content, id, completed } = list;
+
   const listStyle = {
     width: "200px",
     height: "100px",
@@ -98,14 +122,14 @@ const List = ({ list, deleteUserhander }) => {
     borderRadius: "10px",
     flexDirection: "column",
   };
-  const { title, content, id } = list;
-
   return (
     <div style={listStyle}>
       {title}
       <p>{content}</p>
       <div>
-        <button>완료</button>
+        <button onClick={() => toggleCompleted(id)}>
+          {completed ? "취소" : "완료"}
+        </button>
         <button onClick={() => deleteUserhander(id)}>삭제</button>
       </div>
     </div>
