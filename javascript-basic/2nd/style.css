@@ -1,0 +1,30 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: gray;
+  opacity: 0.8;
+  /* 추가 */
+  display: none;
+  padding-top: 100px;
+}
+
+.modal-content {
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  padding: 20px;
+  margin: auto;
+}
+
+/* 추가 */
+.show {
+  display: block;
+}
+
+.경고메세지 {
+  color: red;
+  display: none;
+}

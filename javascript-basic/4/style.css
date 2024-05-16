@@ -1,0 +1,17 @@
+main {
+  height: 300vh;
+  background-color: bisque;
+}
+
+.up-button {
+  /* 1. 스크롤 상관없이 우리가 보는 화면에서 특정 위치 고정 */
+  position: fixed;
+  /* 2. 우측 아래에 두기 */
+  right: 24px;
+  bottom: 24px;
+  display: none;
+}
+
+.show {
+  display: block;
+}
