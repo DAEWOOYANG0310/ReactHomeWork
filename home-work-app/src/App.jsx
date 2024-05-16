@@ -47,7 +47,8 @@ const App = () => {
   const contentTextHandler = (e) => {
     setContent(e.target.value);
   };
-  const addListHandler = () => {
+  const addListHandler = (e) => {
+    e.preventDefault();
     const newList = {
       id: new Date().getTime(),
       title: title,
@@ -86,6 +87,7 @@ const App = () => {
 export default App;
 
 const List = ({ list, deleteUserhander }) => {
+  console.log(list);
   const listStyle = {
     width: "200px",
     height: "100px",
