@@ -16,8 +16,11 @@ const App = () => {
 
   const mainStyle = {
     display: "flex",
+    flexWrap: "wrap",
+    alignContent: "flexStart",
     gap: "20px",
     margin: "10px",
+    overView: "auto",
   };
 
   const [lists, setLists] = useState([
